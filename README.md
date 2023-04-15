@@ -13,7 +13,8 @@ the app has static status regarding the video quality, audio or video, the start
 ## Current status
 
 The app provides full functionality for downloading playlist or a single video with pause and resume capabilities.
-to download a single video:
+
+### Download a single video
 
 1. Call the downloadVideo function in the download.js file with the video url as a paramter as follows:
 
@@ -37,7 +38,16 @@ const videoPath = `/YOUR_Download_PATH/${videoTitle}.mp4`;
 node download.js
 ```
 
-you can copy this line and paste in download.js file, change  then run the file using:
+### Download  a playlist
+
+1. Change the download path in download.js file as in a single video download.
+2. Run the app file:
+
+``` text
+node app.js
+```
+
+3. The program will ask for the playlist url, provide then enter.
 
 ## To be done
 
