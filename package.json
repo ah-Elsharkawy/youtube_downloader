@@ -1,0 +1,24 @@
+{
+  "name": "globbing",
+  "version": "1.0.0",
+  "description": "sadf",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shark",
+  "license": "ISC",
+  "dependencies": {
+    "arp": "^0.0.3",
+    "arp-a": "^0.5.2",
+    "arpping": "^4.0.0",
+    "cli-progress": "^3.12.0",
+    "gauge": "^5.0.0",
+    "node-arp": "^1.0.6",
+    "node-wifi": "^2.0.16",
+    "progress": "^2.0.3",
+    "sanitize-filename": "^1.6.3",
+    "ytdl-core": "^4.11.4",
+    "ytpl": "^2.3.0"
+  }
+}
