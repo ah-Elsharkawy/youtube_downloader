@@ -34,7 +34,7 @@ async function downloadVideo(videoUrl) {
         resolve();   
     })
     .on('end', () => {
-        console.log(`\nFinished downloading ${videoTitle}!`);
+        console.log(`\nFinished downloading ${this.videoTitle}!`);
         resolve()})
     .on('progress', (chunkLength, downloaded, total) => {
         const percent = downloaded / total;
