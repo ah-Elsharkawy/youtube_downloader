@@ -53,9 +53,11 @@ node app.js
 
 will make a complete app with dynamic options and API's for different functionalities like:
 
-- ~~API for a single video~~.
-- API for a list of videos.
-- Ability to choose the file format whether video, audio or both.
-- Ability to choose the quality from available qualities.
-- ability to choose which files to download and which is not.
+- [X] API for a single video.
+- [ ] API for a list of videos.
+- [X] Ability to choose the file format whether video, audio or both.
+- [X] Ability to choose the quality from available qualities.
+- [ ] ability to choose which files to download and which is not.
+
+
 
