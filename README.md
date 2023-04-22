@@ -58,6 +58,3 @@ will make a complete app with dynamic options and API's for different functional
 - [X] Ability to choose the file format whether video, audio or both.
 - [X] Ability to choose the quality from available qualities.
 - [ ] ability to choose which files to download and which is not.
-
-
-

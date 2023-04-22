@@ -11,7 +11,7 @@ class Playlist {
 
     async fetchInfo() {
         try {
-            let playlistInfo = await ytpl(this.playlistURL);
+            let playlistInfo = await ytpl(this.playlistURL, {limit: Infinity}); // limit: infinity option to fetch all the videos from the playlist not just the firest 100
             this.playlistItems = playlistInfo.items;
             this.playlistTitle = playlistInfo.title;
         }
@@ -21,35 +21,104 @@ class Playlist {
         }
     }
 
+    getQuickPreview() {
+
+        let basicInfo = [];
+        this.playlistItems.forEach((item) => {
+            basicInfo.push({
+                title: item.title,
+                url: item.url,
+                duration: item.duration
+            })
+        })
+        return basicInfo;
+    }
+
     async getVideosInfo() {
-        let VideosInfo = [];
-        for (let i=0; i<this.playlistItems.length;  i++)
-        {
-            let response = await fetch(`http://localhost:4500/video/?url='${encodeURIComponent(this.playlistItems[i].url)}'`);
-            let data = await response.json(); // wait for the response data
-            VideosInfo.push(data);
+        try {
+
+            let VideosInfo = [];
+            for (let i=0; i<this.playlistItems.length;  i++)
+                {
+                    let response = await fetch(`http://localhost:4500/video/?url='${encodeURIComponent(this.playlistItems[i].url)}'`);
+                    let data = await response.json(); // wait for the response data
+                    VideosInfo.push(data);
+                }
+            return VideosInfo;
         }
-        return VideosInfo;
+        catch (err)
+        {
+            console.log(err.message);
+        }
+        
     }
 
     async download(list) {
-        for(let i=0; i<list.length; i++)
+        for(let i=0; i<list.items.length; i++)
         {
-            let ytb_video = new Video(list[0].url);
-            await ytb_video.fetchInfo();
+            try {
+                let ytb_video = new Video(list.items[i].url);
+                await ytb_video.fetchInfo();
+                await ytb_video.download(list.items[i].format, list.directoryPath);
+            }
 
-            await ytb_video.download(list[i].format, list.directoryPath);
+            catch (error)
+            {
+                console.log(error.message);
+            }
+            
         }
     }
 }
 
+module.exports = Playlist;
+let ytb_playlist = new Playlist("https://www.youtube.com/playlist?list=PL0ZofDWNZQUsY3CLmXY3YOgBZY0ur76Lb");
 
-let ytb_playlist = new Playlist("https://www.youtube.com/playlist?list=PL7WgedEl7kIQWqycobcyku9tWgpP8fjKe");
-
-/* (async () => {
+(async () => {
     await ytb_playlist.fetchInfo();
-    const videosInfo = await ytb_playlist.getVideosInfo();
-    videosInfo.forEach((v) => {
-        console.log(v.availableVideoQualities);
+    ytb_playlist.playlistItems.forEach((item) => {
+        console.log("index: ", item.index, ",title: ", item.title);
     })
-})() */
+    let list = {
+        directoryPath: "/home/ahmed/Downloads/",
+        items: [
+            {
+                url: "https://www.youtube.com/watch?v=yJg-Y5byMMw",
+                format: {
+                    "itag": 18,
+                    "size": 9315172
+                }
+            },
+            {
+                url: "https://www.youtube.com/watch?v=yJg-Y5byMMw",
+                format: {
+                    "itag": 18,
+                    "size": 9315172
+                }
+            },
+            {
+                url: "https://www.youtube.com/watch?v=yJg-Y5byMMw",
+                format: {
+                    "itag": 18,
+                    "size": 9315172
+                }
+            },
+            {
+                url: "https://www.youtube.com/watch?v=yJg-Y5byMMw",
+                format: {
+                    "itag": 18,
+                    "size": 9315172
+                }
+            },
+            {
+                url: "https://www.youtube.com/watch?v=yJg-Y5byMMw",
+                format: {
+                    "itag": 18,
+                    "size": 9315172
+                }
+            }
+        ]
+    }
+    // ytb_playlist.download(list);
+    
+})()

@@ -61,7 +61,9 @@ class Video {
 	}
 
 	async download(format, directoryPath) {
-		const videoPath = directoryPath + this.videoTitle;
+        try {
+
+        const videoPath = directoryPath + this.videoTitle;
 		const progressBar = new cliProgress.SingleBar(
 			{},
 			cliProgress.Presets.shades_classic
@@ -93,6 +95,13 @@ class Video {
 				})
 				.pipe(fs.createWriteStream(videoPath, { flags: "a" }));
 		});
+        }
+
+        catch (error)
+        {
+            console.log(error.message);
+        }
+		
 	}
 }
 
