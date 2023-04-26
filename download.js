@@ -2,10 +2,11 @@ const ytdl = require('ytdl-core');
 const sanitize = require('sanitize-filename');
 const cliProgress = require('cli-progress');
 const fs = require('fs');
-const { format } = require('path');
+
 
 async function downloadVideo(videoUrl) {
   const videoInfo = await ytdl.getInfo(videoUrl);
+  console.log("video Info: ", videoInfo);
   const videoTitle = sanitize(videoInfo.videoDetails.title);
   const videoPath = `/home/ahmed/Downloads/${videoTitle}.mp4`;
   const progressBar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
@@ -61,3 +62,5 @@ async function downloadVideo(videoUrl) {
 
 module.exports = downloadVideo;
 
+
+downloadVideo("https://www.youtube.com/watch?v=yJg-Y5byMMw");

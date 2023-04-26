@@ -1,8 +1,7 @@
 const ytpl = require('ytpl');
 const downloadVideo = require('./download');
 const readline = require('readline');
-const { resolve } = require('path');
-const { rejects } = require('assert');
+
 
 const r1 = readline.createInterface({
   input: process.stdin,
@@ -34,7 +33,6 @@ async function getPlaylistItems(playlist_link)
       }
     }
   }
-
   catch(err)
   {
     console.log(err);
