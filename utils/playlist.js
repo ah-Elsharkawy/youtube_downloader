@@ -36,11 +36,11 @@ class Playlist {
 
     async getVideosInfo() {
         try {
-
+            console.log("Getting videos info...");
             let VideosInfo = [];
             for (let i=0; i<this.playlistItems.length;  i++)
                 {
-                    let response = await fetch(`http://localhost:4500/video/?url='${encodeURIComponent(this.playlistItems[i].url)}'`);
+                    let response = await fetch(`http://localhost:4500/api/v1/video/?url='${encodeURIComponent(this.playlistItems[i].url)}'`);
                     let data = await response.json(); // wait for the response data
                     VideosInfo.push(data);
                 }
@@ -74,51 +74,3 @@ class Playlist {
 module.exports = Playlist;
 let ytb_playlist = new Playlist("https://www.youtube.com/playlist?list=PL0ZofDWNZQUsY3CLmXY3YOgBZY0ur76Lb");
 
-(async () => {
-    await ytb_playlist.fetchInfo();
-    ytb_playlist.playlistItems.forEach((item) => {
-        console.log("index: ", item.index, ",title: ", item.title);
-    })
-    let list = {
-        directoryPath: "/home/ahmed/Downloads/",
-        items: [
-            {
-                url: "https://www.youtube.com/watch?v=yJg-Y5byMMw",
-                format: {
-                    "itag": 18,
-                    "size": 9315172
-                }
-            },
-            {
-                url: "https://www.youtube.com/watch?v=yJg-Y5byMMw",
-                format: {
-                    "itag": 18,
-                    "size": 9315172
-                }
-            },
-            {
-                url: "https://www.youtube.com/watch?v=yJg-Y5byMMw",
-                format: {
-                    "itag": 18,
-                    "size": 9315172
-                }
-            },
-            {
-                url: "https://www.youtube.com/watch?v=yJg-Y5byMMw",
-                format: {
-                    "itag": 18,
-                    "size": 9315172
-                }
-            },
-            {
-                url: "https://www.youtube.com/watch?v=yJg-Y5byMMw",
-                format: {
-                    "itag": 18,
-                    "size": 9315172
-                }
-            }
-        ]
-    }
-    // ytb_playlist.download(list);
-    
-})()

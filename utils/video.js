@@ -106,13 +106,4 @@ class Video {
 }
 
 module.exports = Video;
-/* 
-let ytb = new Video("https://www.youtube.com/watch?v=yJg-Y5byMMw");
 
-(async () => {
-    await ytb.fetchInfo();
-    console.log("Title: ", ytb.videoTitle);
-    console.log("Video formats: ", ytb.getVideoQualities());
-    console.log("Audio formats: ", ytb.getAudioFormats());
-    console.log("Length: ", ytb.getLengthInSeconds());
-})(); */

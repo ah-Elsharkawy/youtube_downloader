@@ -2,6 +2,7 @@ const Video = require('../utils/video');
 const express = require("express");
 const router = express.Router();
 
+// get the video info: format and qualities
 router.get('/', (req, res) => {
 
     // Remove the quotes
@@ -30,6 +31,7 @@ router.get('/', (req, res) => {
     })()
 });
 
+// download the video using info sent in the body: format and directorypath
 router.post('/download', (req, res) => {
 
     let videoInfo = req.body;

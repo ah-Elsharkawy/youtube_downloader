@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.urlencoded({extended:true}))
 app.use(express.json());
 
-app.use('/video', videoRouter);
-app.use('/playlist', playlistRouter);
+app.use('/api/v1/video', videoRouter);
+app.use('/api/v1/playlist', playlistRouter);
 
 app.listen(4500, () => console.log("listening on port 4500"));
