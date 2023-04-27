@@ -86,7 +86,7 @@ class Video {
 					resolve("the video is either downloaded or can't be downloaded");
 				})
 				.on("end", () => {
-					console.log(`\nFinished downloading ${videoTitle}!`);
+					console.log(`\nFinished downloading ${this.videoTitle}!`);
 					resolve("downloaded succesfully");
 				})
 				.on("progress", (chunkLength, downloaded, total) => {

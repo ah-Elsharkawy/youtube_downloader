@@ -5,6 +5,15 @@
 This app was made for personal usage, the app was just two functions one for downloading a single video and the other for a playlist (still available).
 Extended the app to provide APIs to get and download the videos and the playlists.
 
+## Categories
+
+- [Installation](#installation).
+- [Current status](#current-status).
+- [API Endpoints](#api-endpoints).
+- [Non APIs version](#non-apis-version).
+- [Docker container](#docker-container).
+- [To be done](to-be-done).
+
 ## Installation
 
 1. install [Nodejs](https://nodejs.org/en/download).
@@ -22,6 +31,7 @@ To use the APIs you have to run `node App.js`
 
 1. `GET: /api/v1/video/`:
 This endpoint is used to retrieve information about a YouTube video. The video information includes the title of the video, available video qualities, and available audio formats. The endpoint accepts a url parameter in the query string, which should contain the URL of the YouTube video encoded using encodeURIComponent("videoUrl").
+
 Example Usage:
 
 ```text
@@ -130,6 +140,7 @@ Response (part of the items):\
 
 2. `GET: /api/v1/playlist/details`:
 This endpoint is used to get detailed information about a YouTube playlist. The detailed information includes the title of the playlist and a list of available video formats and qualities. The endpoint accepts a url parameter in the query string, which should contain the URL of the YouTube playlist encoded using encodeURIComponent("playlistUrl").
+
 Example Usage:
 
 ```text
@@ -280,6 +291,7 @@ Body:
 ```
 
 Response:
+
 Sends Success if downloaded and the error message if not
 
 ## Non APIs version
@@ -319,6 +331,20 @@ node ytb_playlist.js
 
 3. The program will ask for the playlist url, provide then enter.
 
+## Docker container
+
+you need to have docker installed to build an image from the dockerfile using:
+
+```text
+docker build -t <image-name> .
+```
+
+then you can run a container from the image using:
+
+```text
+docker run -p 4500:4500 -d <image-name>
+```
+
 ## To be done
 
 will make a complete app with dynamic options and API's for different functionalities like:
@@ -328,5 +354,6 @@ will make a complete app with dynamic options and API's for different functional
 - [X] Ability to choose the file format whether video, audio or both.
 - [X] Ability to choose the quality from available qualities.
 - [X] Ability to choose which files to download and which is not.
+- [X] Containerizing the app
 - [ ] Send the downloaded files to the client.
 - [ ] Front-end app using Reactjs
